@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 public class PalabrasListAdapter extends ListAdapter<Palabra, PalabrasViewHolder> {
+    private OnDeleteClickListener deleteListener;
+
 
     public PalabrasListAdapter(@NonNull DiffUtil.ItemCallback<Palabra> diffCallback) {
         super(diffCallback);
@@ -21,7 +23,19 @@ public class PalabrasListAdapter extends ListAdapter<Palabra, PalabrasViewHolder
     public void onBindViewHolder(PalabrasViewHolder holder, int position) {
         Palabra current = getItem(position);
         holder.bind(current.getPalabra());
+
+        holder.deleteButton.setOnClickListener(v -> {
+            // Llamar al ViewModel para eliminar la palabra
+            if (deleteListener != null) {
+                deleteListener.onDeleteClicked(current);
+            }
+        });
     }
+
+    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
+        this.deleteListener = listener;
+    }
+
 
     static class WordDiff extends DiffUtil.ItemCallback<Palabra> {
 

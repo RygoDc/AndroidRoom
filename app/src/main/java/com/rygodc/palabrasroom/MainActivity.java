@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
+
+        adapter.setOnDeleteClickListener(palabra -> {
+            mPalabraViewModel.delete(palabra);
+            Toast.makeText(MainActivity.this, "Palabra eliminada", Toast.LENGTH_SHORT).show();
+        });
+
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
