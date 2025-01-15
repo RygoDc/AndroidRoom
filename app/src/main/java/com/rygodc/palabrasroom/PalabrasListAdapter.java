@@ -10,6 +10,7 @@ public class PalabrasListAdapter extends ListAdapter<Palabra, PalabrasViewHolder
     private OnDeleteClickListener deleteListener;
 
 
+
     public PalabrasListAdapter(@NonNull DiffUtil.ItemCallback<Palabra> diffCallback) {
         super(diffCallback);
     }
